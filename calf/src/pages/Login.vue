@@ -1,5 +1,5 @@
 <template>
-  <div class="login-content bg-color-main d-flex align-items-center justify-content-center">
+  <div class="login-content d-flex align-items-center justify-content-center">
    <div>
     <el-form class="login-form" :model="loginForm" ref="loginRef" :rules="rules" label-width="100px">
       <el-form-item label="用户名" prop="name">
@@ -17,16 +17,20 @@
 
 <script>
   export default {
-    name: 'login',
-    data() {
+    name: 'Login',
+    data () {
       const validateName = (rule, value, callback) => {
-        if(value !== 'moke') {
-          callback('用户名错误！')
+        if (value !== 'moke') {
+          return callback('用户名错误！')
+        } else {
+          callback()
         }
       }
       const validatePass = (rule, value, callback) => {
-        if(value !== 'moke') {
-          callback('密码错误！')
+        if (value !== 'moke') {
+          return callback('密码错误！')
+        } else {
+          callback()
         }
       }
 
@@ -37,23 +41,22 @@
         },
         rules: {
           name: [
-            {required: true, message: "请输入用户名", trigger: "blur"},
-            {validator: validateName, trigger: "blur"}
+            { required: true, message: "请输入用户名", trigger: "blur" },
+            { validator: validateName, trigger: "blur" }
           ],
           password: [
-            {required: true, message: "请输入密码", trigger: "blur"},
-            {validator: validatePass, trigger: "blur"}
+            { required: true, message: "请输入密码", trigger: "blur" },
+            { validator: validatePass, trigger: "blur" }
           ]
         }
       }
     },
     methods: {
-      login() {
+      login () {
         this.$refs.loginRef.validate((valid) => {
           if (valid) {
-            alert('submit!')
+            this.$router.push('/layout')
           } else {
-            console.log('error submit!!');
             return false
           }
         })
@@ -65,6 +68,7 @@
 <style scoped>
   .login-content {
     height: 100vh;
+    background: url("../assets/images/zcloud-login-bg.png");
   }
   .login-form {
     border: 1px solid palegoldenrod;

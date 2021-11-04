@@ -1,5 +1,5 @@
-const Login = () => import('@/pages/Login.vue')
+const Login = () => import('@/pages/login/Login.vue')
 const NotFound = () => import('@/pages/404.vue')
-const Layout = () => import('@/layout/Layout.vue')
+const Home = () => import('@/pages/Home.vue')
 
-export { Login, NotFound, Layout }
+export { Login, NotFound, Home }

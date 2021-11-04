@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { Login, NotFound, Layout } from './router'
+import { Login, NotFound, Home } from './router'
 
 Vue.use(VueRouter)
 
@@ -16,18 +16,29 @@ const routes = [
     component: Login
   },
   {
-    name: 'layout',
-    path: '/layout',
-    component: Layout
+    name: 'home',
+    path: '/home',
+    component: Home
   },
   {
-    name: 'nogFound',
+    name: 'notFound',
     path: '*',
     component: NotFound
   }
 ]
 
-export default new VueRouter({
+const router = new VueRouter({
   mode: 'history',
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login') return next()
+
+  const token = window.sessionStorage.getItem('mokeToken')
+  if (!token) return next('/login')
+
+  next()
+})
+
+export default router

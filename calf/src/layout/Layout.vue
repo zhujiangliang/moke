@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex">
+  <div class="d-flex h-100">
     <layout-left-menu></layout-left-menu>
     <router-view></router-view>
   </div>

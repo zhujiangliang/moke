@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { Login, NotFound, Home } from './router'
+import { Login, NotFound, Layout } from './router'
 
 Vue.use(VueRouter)
 
@@ -16,9 +16,9 @@ const routes = [
     component: Login
   },
   {
-    name: 'home',
-    path: '/home',
-    component: Home
+    name: 'layout',
+    path: '/layout',
+    component: Layout
   },
   {
     name: 'notFound',
@@ -34,7 +34,6 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.path === '/login') return next()
-
   const token = window.sessionStorage.getItem('mokeToken')
   if (!token) return next('/login')
 

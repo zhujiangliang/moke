@@ -6,13 +6,17 @@
       @select="select"
       background-color="#545c64"
       text-color="#fff"
-      active-text-color="#ffd04b">
-      <el-submenu v-for="menu in menuList" :key="menu.index" :index="menu.index">
+      active-text-color="#409EFF">
+      <el-submenu v-for="menu in menuList" :key="menu.id" :index="String(menu.id)">
         <template slot="title">
-          {{menu.name}}
+          <i class="iconfont mr-2" :class="iconfontObj[menu.id]"></i>
+          <span>{{menu.authName}}</span>
         </template>
-        <el-menu-item v-for="submenu in menu.submenuList" :key="submenu.index" :index="submenu.index">
-          {{submenu.name}}
+        <el-menu-item v-for="submenu in menu.children" :key="submenu.id" :index="String(submenu.id)">
+          <template slot="title">
+            <i class="el-icon-menu mr-2"></i>
+            <span>{{submenu.authName}}</span>
+          </template>
         </el-menu-item>
       </el-submenu>
     </el-menu>
@@ -20,24 +24,39 @@
  </template>
 
 <script>
-  import menuList from './mokeJson/menuList'
-
   export default {
     name: 'LayoutLeftMenu',
     data () {
       return {
-        menuList: menuList
+        menuList: [],
+        iconfontObj: {
+          '125': "icon-user",
+          '103': "icon-tijikongjian",
+          '101': "icon-shangpin",
+          '102': "icon-danju",
+          '145': "icon-baobiao"
+        }
       }
     },
     computed: {
       defaultMenu () {
-        return this.menuList[0].submenuList[0].index
+        return '111'
       }
     },
     methods: {
+      async getMunuList () {
+        const { data } = await this.$http.get('/menus')
+        const { status, msg } = data.meta
+        if (status !== 200) return this.$message.error(msg)
+        this.menuList = data.data
+      },
+
       select (key) {
         this.$router.push({ name: key })
       }
+    },
+    created () {
+      this.getMunuList()
     }
   }
 </script>
@@ -47,7 +66,9 @@
     height: 100vh;
     .left-menu {
       width: 200px;
-      overflow: hidden;
+    }
+    .el-menu {
+      border-right: none;
     }
   }
 </style>

@@ -67,13 +67,13 @@
 
       async handleLogin () {
         const params = this.loginForm
-        const res = await this.$http.post('/login', params)
-        const { token } = res.data
-        const { status, msg } = res.data.meta
+        const { data } = await this.$http.post('/login', params)
+        const { token } = data.data
+        const { status, msg } = data.meta
         const type = status === 200 ? 'success' : 'warning'
         if (status === 200) {
           window.sessionStorage.setItem('mokeToken', token)
-          this.$router.push('/home')
+          this.$router.push('/layout')
         } else {
           this.$message({
             message: msg,

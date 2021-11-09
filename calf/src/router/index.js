@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { Login, NotFound, Layout } from './router'
+import { Login, NotFound, Layout, Users } from './router'
 
 Vue.use(VueRouter)
 
@@ -18,7 +18,15 @@ const routes = [
   {
     name: 'layout',
     path: '/layout',
-    component: Layout
+    component: Layout,
+    redirect: '/users',
+    children: [
+      {
+        path: '/users',
+        name: 'users',
+        component: Users
+      }
+    ]
   },
   {
     name: 'notFound',

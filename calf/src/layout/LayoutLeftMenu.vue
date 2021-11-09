@@ -1,22 +1,22 @@
 <template>
   <div class="h-100 menu-container d-flex flex-column">
-    <!-- <div class="menu-container-version">11</div> -->
     <el-menu
-      :default-active="defaultMenu"
+      :default-active="defaultActive"
       :collapse="collapse"
       :collapse-transition="false"
       class="el-menu-vertical-demo flex-grow-1 border-0"
-      @select="select"
-      background-color="#545c64"
+      background-color="#1f2533"
       text-color="#fff"
       active-text-color="#409EFF"
+      router
+      @select="select"
     >
-      <el-submenu v-for="menu in menuList" :key="menu.id" :index="String(menu.id)">
+      <el-submenu v-for="menu in menuList" :key="menu.id" :index="'/' + menu.path">
         <template slot="title">
           <i class="iconfont mr-2" :class="iconfontObj[menu.id]"></i>
           <span>{{ menu.authName }}</span>
         </template>
-        <el-menu-item v-for="submenu in menu.children" :key="submenu.id" :index="String(submenu.id)">
+        <el-menu-item v-for="submenu in menu.children" :key="submenu.id" :index="'/' + submenu.path">
           <template slot="title">
             <i class="el-icon-menu mr-2"></i>
             <span>{{ submenu.authName }}</span>
@@ -43,13 +43,11 @@
           101: 'icon-shangpin',
           102: 'icon-danju',
           145: 'icon-baobiao'
-        }
+        },
+        defaultActive: "/users"
       }
     },
     computed: {
-      defaultMenu () {
-        return '111'
-      },
       collapseIcon () {
         return this.collapse ? 'el-icon-right' : 'el-icon-back'
       }
@@ -63,10 +61,13 @@
       },
 
       select (key) {
-        console.log(111, key)
+        console.log('key', key)
+        // this.defaultActive = key
+        // window.sessionStorage.setItem('defaultActivePath', key)
       }
     },
     created () {
+      // this.defaultActive = window.sessionStorage.getItem('defaultActivePath')
       this.getMunuList()
     }
   }
@@ -74,10 +75,17 @@
 
 <style lang="scss" scoped>
   .menu-container {
-    background-color: #545c64;
+    background-color: #1f2533;
     position: relative;
     &-version {
       color: white;
+    }
+    .el-submenu {
+      width: 160px;
+      .el-menu-item {
+        min-width: 160px;
+        padding-left: 30px !important;
+      }
     }
     .el-menu--collapse {
       width: 0px;
@@ -91,7 +99,7 @@
     .collapse-btn {
       width: 20px;
       color: white;
-      background: #545c64;
+      background: #1f2533;
       border-radius: 0 25px 25px 0;
       border-left: 1px solid #909399;
       position: absolute;

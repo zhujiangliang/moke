@@ -43,13 +43,15 @@
           101: 'icon-shangpin',
           102: 'icon-danju',
           145: 'icon-baobiao'
-        },
-        defaultActive: "/users"
+        }
       }
     },
     computed: {
       collapseIcon () {
         return this.collapse ? 'el-icon-right' : 'el-icon-back'
+      },
+      defaultActive () {
+        return '/' + this.$route.fullPath.split('/')[1]
       }
     },
     methods: {
@@ -62,12 +64,9 @@
 
       select (key) {
         console.log('key', key)
-        // this.defaultActive = key
-        // window.sessionStorage.setItem('defaultActivePath', key)
       }
     },
     created () {
-      // this.defaultActive = window.sessionStorage.getItem('defaultActivePath')
       this.getMunuList()
     }
   }

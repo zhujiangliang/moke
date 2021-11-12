@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { Login, NotFound, Layout, Users } from './router'
+import { Login, NotFound, Layout, Users, Roles, Rights } from './router'
 
 Vue.use(VueRouter)
 
@@ -21,11 +21,9 @@ const routes = [
     component: Layout,
     redirect: '/users',
     children: [
-      {
-        path: '/users',
-        name: 'users',
-        component: Users
-      }
+      { path: '/users', name: 'users', component: Users },
+      { path: '/roles', name: 'roles', component: Roles },
+      { path: '/rights', name: 'rights', component: Rights }
     ]
   },
   {

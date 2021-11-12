@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <el-card>
     userList
-  </div>
+  </el-card>
 </template>

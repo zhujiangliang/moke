@@ -14,10 +14,42 @@
         <el-button @click="reset">重置</el-button>
       </div>
     </div>
+    <div style="color: white;">
+      <div>{{count}}</div>
+      <div>{{username}}</div>
+      <div>{{height}}</div>
+      <div>vuex-surplusAge: {{surplusAge}}</div>
+      <div>vuex-weight: {{weight}}</div>
+      <!-- <el-button @click="addHandle">add</el-button>
+      <el-button @click="reduceHandle">reduce</el-button> -->
+      <hr>
+      <el-button @click="increment({number: 50})">increment</el-button>
+      <el-button @click="reduceNum">reduceNum</el-button>
+      <hr>
+      <el-button @click="reduceActionsClick">reduceActions</el-button>
+      <el-button @click="addActionsClick">addActions</el-button>
+
+      <hr>
+      <div>asyncState:{{asyncState}}</div>
+      <el-button @click="asyncStateClick">asyncState</el-button>
+
+      <hr>
+      <h3>
+        modules
+        <el-button @click="moduleClick">module</el-button>
+      </h3>
+      <div>{{$store.state.moduleA.moduleName}}</div>
+      <div>{{$store.getters.doubleCount}}</div>
+      <!-- <div>{{$store.state.moduleB.moduleName}}: {{$store.getters.moduleB.doubleCount}}</div> -->
+      <!-- <div>{{nameA}}</div>
+      <div>{{nameB}}</div> -->
+    </div>
   </div>
 </template>
 
 <script>
+  import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+
   export default {
     name: 'Login',
     data () {
@@ -53,6 +85,28 @@
         }
       }
     },
+    computed: {
+      // ...mapState(['count', 'username']),
+      ...mapState({
+        count: state => state.count,
+        username: 'username',
+        asyncState: 'asyncState',
+        nameA: 'moduleA.moduleName',
+        // nameB: 'moduleB/moduleName'
+      }),
+      // ...mapGetters(['surplusAge', 'weight']),
+      ...mapGetters({
+        surplusAge: 'surplusAge',
+        weight: 'weight'
+      }),
+      // height: () => this.$store.state.count + 10,
+      height () {
+        return this.$store.state.count + 10
+      },
+      // weightself () {
+      //   return this.$store.getters.weight
+      // }
+    },
     methods: {
       login () {
         this.$refs.loginRef.validate((valid) => {
@@ -80,6 +134,62 @@
             type
           })
         }
+      },
+
+      addHandle () {
+        // this.$store.commit('increment', 100)
+        // this.$store.commit('increment', {
+        //   number: 100
+        // })
+        // this.$store.commit({
+        //   type: 'increment',
+        //   number: 20
+        // })
+        // console.log(this.$store.getters.weight(165))
+        this.increment({ number: 10 })
+      },
+
+      reduceHandle () {
+        // this.$store.commit({
+        //   type: 'reduceNum'
+        // })
+        this.reduceNum()
+      },
+
+      ...mapMutations(['increment', 'reduceNum']),
+      ...mapActions([
+        'reduceActions',
+        'addActions',
+        'asyncActions'
+      ]),
+      reduceActionsClick () {
+        // this.$store.dispatch({
+        //   type: 'reduceActions',
+        //   num: '10000'
+        // })
+        // this.$store.dispatch('reduceActions', {
+        //   num: '10000'
+        // })
+        this.reduceActions({ num: 888 })
+      },
+
+      addActionsClick () {
+        // this.$store.dispatch('addActions', {
+        //   number: 333
+        // })
+        this.addActions({ number: 999 })
+      },
+
+      asyncStateClick () {
+        this.asyncActions().then((msg) => {
+          console.log('ok', msg)
+        }).finally((err) => {
+          console.log("err", err)
+        })
+      },
+
+      moduleClick () {
+        console.log('--------', this.$store.state.moduleA.moduleName)
       }
     }
   }

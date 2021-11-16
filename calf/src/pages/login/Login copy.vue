@@ -17,6 +17,23 @@
     <div style="color: white;">
       <ul>
         <li>{{name}}</li>
+        <li>{{user}}</li>
+        <li>{{userName}}</li>
+        <li>{{height}}</li>
+        <li>{{userNameAge}}</li>
+        <li>{{nameWeight('75kg')}}</li>
+        <li><el-button @click="addCountClick">addCount</el-button>{{count}}</li>
+        <li><el-button @click="asyncAddCountClick">asyncAddCount</el-button>{{count}}</li>
+        <li>-------------------------</li>
+        <li>{{$store.state.moduleA.name}}</li>
+        <li>{{aName}}</li>
+        <li>{{aCount({num: 100})}}</li>
+        <li><el-button @click="aAddCountClick">aAddCount</el-button></li>
+        <li><el-button @click="aReduceCountClick">aReduceCount</el-button></li>
+        <li><el-button @click="aAddCountHandleClick">aAddCountHandle</el-button></li>
+        <li><el-button @click="aReduceCountHandleClick">aReduceCountHandle</el-button></li>
+        <li>----------------</li>
+        <li>{{bName}}</li>
       </ul>
     </div>
   </div>
@@ -24,7 +41,8 @@
 
 <script>
   import { createNamespacedHelpers } from 'vuex'
-  const { mapState } = createNamespacedHelpers('moduleA')
+  const { a = mapState } = createNamespacedHelpers('moduleB')
+  import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
   export default {
     name: 'Login',
@@ -62,10 +80,53 @@
       }
     },
     computed: {
-      ...mapState(['name']),
+      ...mapState(['name', 'user', 'count', 'height']),
+      // ...mapState({
+      //   aName: state => state.moduleA.name
+      // }),
+      ...mapState('moduleA', {
+        // aName: state => state.name
+        aName: 'name'
+      }),
+      // ...mapState('moduleA', ['name']),
+      ...mapGetters(['userName', 'userNameAge', 'nameWeight']),
+      ...mapGetters('moduleA', ['aCount']),
 
+      ...a({ bName: 'name' })
     },
     methods: {
+      ...mapMutations(['addCount', 'moduleA/aAddCount']),
+      ...mapMutations('moduleA', ['aReduceCount']),
+      ...mapActions(['asyncAddCount']),
+      // ...mapActions(['asyncAddCount', 'moduleA/aAddCountHandle']),
+      ...mapActions('moduleA', ['aAddCountHandle']),
+      addCountClick () {
+        //   this.$store.commit({
+        //   type: 'addCount',
+        //   num: 50
+        // })
+        this.addCount({ num: 10 })
+      },
+      asyncAddCountClick () {
+        // this.asyncAddCount('asyncAddCount', { num: 100 })
+        this.asyncAddCount({ num: 100 })
+      },
+      aAddCountClick () {
+        // this.$store.commit('moduleA/aAddCount', {num: 555})
+        this['moduleA/aAddCount']({ num: 555 })
+      },
+      aReduceCountClick () {
+        this.aReduceCount({ num: 999 })
+      },
+      aAddCountHandleClick () {
+        // this.$store.dispatch('moduleA/aAddCountHandle', { num: 111 })
+        // this['moduleA/aAddCountHandle']({ num: 111 })
+        this.aAddCountHandle({ num: 222 })
+      },
+      aReduceCountHandleClick () {
+        this.$store.dispatch('moduleA/aReduceCountHandle', { num: 777 })
+      },
+
 
 
 

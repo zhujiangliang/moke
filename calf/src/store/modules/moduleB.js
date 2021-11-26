@@ -12,7 +12,7 @@ export default {
     }
   },
   mutations: {
-    bAddCount(state, payload) {
+    bAddCount(state, payload) {  
       state.count += payload.num
     }
   },

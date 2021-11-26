@@ -101,16 +101,22 @@
       }
     },
     created () {
-      var n = window.prompt("--------")
-      var a = 1
-      var b = 1
-      var sum
-      for (var i = 2; i < n; i++) {
-        sum = a + b
-        a = b
-        b = sum
-      }
-      console.log("sum", sum)
+      const a = new Number(123);
+      a.len = 'zhuliang'
+      console.log(a.len)
+      // function test1 () {
+      //   function test2 () {
+      //     var b = 2
+      //     a = 2
+      //     console.log(a)
+      //   }
+      //   var a = 1
+      //   return test2()
+      // }
+
+      // var c = 3
+      // var test3 = test1()
+      // test3
     }
   }
 </script>

@@ -284,5 +284,31 @@ const one = new FullCompute()
 one.plus(1, 5)
 ```
 
+```js
+//封装：
+const inherit = (function () {
+var Buffer = function () {}
+return function (Target, Origin) {
+    Buffer.prototype = Origin.prototype
+    Target.prototype = new Buffer()
+    Target.prototype.constructor = Target
+    Target.prototype.super_class = Origin
+}
+})()
+
+function Teacher () { }
+Teacher.prototype.name = 'teacher'
+function Student () {
+this.age = 'name-s'
+}
+
+inherit(Student, Teacher)
+
+var s = new Student()
+var t = new Teacher()
+console.log(s)
+console.log(t)
+```
+
 
 

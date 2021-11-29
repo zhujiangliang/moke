@@ -225,3 +225,64 @@ console.lo(str.length); //	=> console.lo(new String('abc').length); // 3
 
 ```
 
+### 原型链
+
+![1638167369948](C:\Users\ZhuLiang\AppData\Roaming\Typora\typora-user-images\1638167369948.png)
+
+![1638169497102](C:\Users\ZhuLiang\AppData\Roaming\Typora\typora-user-images\1638169497102.png)
+
+
+
+```js
+// 自定义的原型没有用，只能更改系统创造的
+const obj = Object.create(null)
+ const obj1 = {
+     count: 1
+ }
+ obj.__proto__ = obj1
+console.log(obj)
+console.log(obj.count) //undefined
+```
+
+```js
+// call/apply 改变this指向
+function One(name, age) {
+    this.name = name
+    this.age = age
+}
+const two = {
+    height: '165'
+}
+One.call(two, 'name-call', 'age-call')
+// One.apply(two, ['name-call', 'age-call']) // arguments
+const one = new One('name-new', 'age-new')
+console.log(one) // {name: 'name-new', age: 'age-new'}
+console.log(two) // {height: '165', name: 'name-call', age: 'age-call'}
+
+// 案例：
+ function Compute() {
+     this.plus = function (a, b) {
+         console.log(a + b)
+     }
+     this.minus = function (a, b) {
+         console.log(a - b)
+     }
+ }
+
+function FullCompute() {
+    Compute.call(this)
+    this.mul = function (a, b) {
+        console.log(a * b)
+    }
+
+    this.div = function (a, b) {
+        console.log(a / b)
+    }
+}
+
+const one = new FullCompute()
+one.plus(1, 5)
+```
+
+
+

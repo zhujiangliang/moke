@@ -101,22 +101,36 @@
       }
     },
     created () {
-      const a = new Number(123);
-      a.len = 'zhuliang'
-      console.log(a.len)
-      // function test1 () {
-      //   function test2 () {
-      //     var b = 2
-      //     a = 2
-      //     console.log(a)
-      //   }
-      //   var a = 1
-      //   return test2()
-      // }
+      function Teacher () { }
+      function Student () { }
+      function Buffer () { }
 
-      // var c = 3
-      // var test3 = test1()
-      // test3
+      Buffer.prototype = Teacher.prototype
+      var buffer = new Buffer()
+      Student.prototype = buffer
+      Student.prototype.age = 25
+
+      var s = new Student()
+      var t = new Teacher()
+      console.log(s)
+      console.log(t)
+
+      // --------------------------
+      function Teacher1 () { }
+      function Student1 () { }
+
+      function inherit (Target, Origin) {
+        function Buffer () { }
+        Buffer.prototype = Origin.prototype
+        Target.prototype = new Buffer()
+      }
+
+      inherit(Student1, Teacher1)
+
+      var s1 = new Student1()
+      var t1 = new Teacher1()
+      console.log(s)
+      console.log(t)
     }
   }
 </script>

@@ -99,60 +99,6 @@
           })
         }
       }
-    },
-    created () {
-      // function Teacher () { 
-      //   this.name = 'name-t'
-      // }
-      // function Student () {
-      //   this.age = 'name-s'
-      //  }
-      // function Buffer () { }
-
-      // Buffer.prototype = Teacher.prototype
-      // var buffer = new Buffer()
-      // Student.prototype = buffer
-      // Student.prototype.constructor = Student
-
-      // var s = new Student()
-      // var t = new Teacher()
-      // console.log(s)
-      // console.log(t)
-
-      // // --------------------------
-      // function Teacher1 () { }
-      // function Student1 () { }
-
-      // function inherit (Target, Origin) {
-      //   function Buffer () { }
-      //   Buffer.prototype = Origin.prototype
-      //   Target.prototype = new Buffer()
-      //   Target.prototype.constructor = Target
-      //   Target.prototype.super_class = Origin
-      // }
-
-      const inherit = (function () {
-        var Buffer = function () {}
-        return function (Target, Origin) {
-          Buffer.prototype = Origin.prototype
-          Target.prototype = new Buffer()
-          Target.prototype.constructor = Target
-          Target.prototype.super_class = Origin
-        }
-      })()
-
-      function Teacher () { }
-      Teacher.prototype.name = 'teacher'
-      function Student () {
-        this.age = 'name-s'
-       }
-
-      inherit(Student, Teacher)
-
-      var s = new Student()
-      var t = new Teacher()
-      console.log(s)
-      console.log(t)
     }
   }
 </script>

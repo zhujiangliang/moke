@@ -312,3 +312,71 @@ console.log(t)
 
 
 
+### obj方法
+
+```js 
+const obj = {
+    name: 'one',
+    age: 20
+}
+obj.hasOwnProperty('age');  // true
+'height' in obj;            // false
+
+// A instanceof B    A对象的原型里到底有没有B的原型
+function Car() {}
+cosnt car = new Car()
+car instanceof Car		// true 
+
+```
+
+### 判断数组的三种方法
+
+```js
+var arr = [1, 2, 3];
+
+console.log(arr.constructor);
+
+console.log(arr instanceof Arrary )   A对象的原型里到底有没有B的原型
+
+console.log(arr.toString()) // 1, 2, 3
+const str = Object.prototype.toString.call(arr)
+console.log(str)
+str === '[object Array]' // true
+```
+
+### callee / caller
+
+```js
+递归：
+var sum = (function(n){
+    if(n <= 1) {
+        return 1;
+    }
+    return n + arguments.callee(n-1)
+})(10)
+console.log(sum)
+
+test1()
+function test1() {
+    test2()
+}
+function test2() {
+    console.log(test2.caller)  // 返回当前被调用函数的函数引用：谁调用函数，指向谁
+}
+```
+
+### typeof可能返回的值
+
+```js
+object(null)
+boolean
+number
+string
+undefined
+function
+```
+
+
+
+
+

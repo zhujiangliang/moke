@@ -1,12 +1,13 @@
 <template>
   <div>
+    error 404!
     page not found,please check router!
   </div>
 </template>
 
 <script>
   export default {
-    name: '404'
+    name: 'error404'
   }
 </script>
 

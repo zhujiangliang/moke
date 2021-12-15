@@ -14,11 +14,6 @@
         <el-button @click="reset">重置</el-button>
       </div>
     </div>
-    <div style="color: white;">
-      <ul>
-        <li>{{name}}</li>
-      </ul>
-    </div>
   </div>
 </template>
 
@@ -66,12 +61,6 @@
 
     },
     methods: {
-
-
-
-
-
-
       login () {
         this.$refs.loginRef.validate((valid) => {
           if (!valid) return
@@ -83,21 +72,8 @@
         this.$refs.loginRef.resetFields()
       },
 
-      async handleLogin () {
-        const params = this.loginForm
-        const { data } = await this.$http.post('/login', params)
-        const { token } = data.data
-        const { status, msg } = data.meta
-        const type = status === 200 ? 'success' : 'warning'
-        if (status === 200) {
-          window.sessionStorage.setItem('mokeToken', token)
-          this.$router.push('/layout')
-        } else {
-          this.$message({
-            message: msg,
-            type
-          })
-        }
+      handleLogin () {
+        this.$router.push('/layout')
       }
     }
   }

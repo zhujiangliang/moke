@@ -1,12 +1,12 @@
 <template>
-  <el-card>
-    Rights
-  </el-card>
+  <div>
+    <h1>sunday-plane</h1>
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'Rights'
+    name: 'sundayPlane'
   }
 </script>
 

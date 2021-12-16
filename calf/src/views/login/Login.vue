@@ -73,7 +73,7 @@
       },
 
       handleLogin () {
-        this.$router.push('/layout')
+        this.$router.push('/monday')
       }
     }
   }

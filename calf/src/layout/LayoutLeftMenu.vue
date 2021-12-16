@@ -3,7 +3,7 @@
     <el-menu
       :default-active="defaultActive"
       :collapse="collapse"
-      :collapse-transition="false"
+      collapse-transition
       class="el-menu-vertical-demo flex-grow-1 border-0"
       background-color="#1f2533"
       text-color="#fff"
@@ -11,15 +11,13 @@
       router
       @select="select"
     >
-      <el-submenu v-for="menu in menuList" :key="menu.id" :index="'/' + menu.path">
+      <el-submenu v-for="menu in menus" :key="menu.name" :index="menu.name">
         <template slot="title">
-          <i class="iconfont mr-2" :class="iconfontObj[menu.id]"></i>
-          <span>{{ menu.authName }}</span>
+          <span>{{menu.name}}</span>
         </template>
-        <el-menu-item v-for="submenu in menu.children" :key="submenu.id" :index="'/' + submenu.path">
+        <el-menu-item v-for="submenu in menu.children" :key="submenu.name" :index="submenu.path">
           <template slot="title">
-            <i class="el-icon-menu mr-2"></i>
-            <span>{{ submenu.authName }}</span>
+            <span>{{submenu.name}}</span>
           </template>
         </el-menu-item>
       </el-submenu>
@@ -31,19 +29,13 @@
 </template>
 
 <script>
+  import menus from './msg/menus'
   export default {
     name: 'LayoutLeftMenu',
     data () {
       return {
         collapse: false,
-        menuList: [],
-        iconfontObj: {
-          125: 'icon-user',
-          103: 'icon-tijikongjian',
-          101: 'icon-shangpin',
-          102: 'icon-danju',
-          145: 'icon-baobiao'
-        }
+        menus: [],
       }
     },
     computed: {
@@ -51,28 +43,22 @@
         return this.collapse ? 'el-icon-right' : 'el-icon-back'
       },
       defaultActive () {
-        return '/' + this.$route.fullPath.split('/')[1]
+        return this.$route.fullPath
       }
     },
     methods: {
-      async getMunuList () {
-        const { data } = await this.$http.get('/menus')
-        const { status, msg } = data.meta
-        if (status !== 200) return this.$message.error(msg)
-        this.menuList = data.data
-      },
-
       select (key) {
         console.log('key', key)
       }
     },
     created () {
-      this.getMunuList()
+      this.menus = menus
+      console.log('menus', menus)
     }
   }
 </script>
 
-<style lang="scss" scoped>
+ <style lang="scss" scoped>
   .menu-container {
     background-color: #1f2533;
     position: relative;

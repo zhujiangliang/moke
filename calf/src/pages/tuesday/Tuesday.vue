@@ -1,12 +1,12 @@
 <template>
-  <el-card>
-    Roles
-  </el-card>
+  <div>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'Roles'
+    name: "Tuesday"
   }
 </script>
 

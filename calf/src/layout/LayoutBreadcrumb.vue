@@ -1,7 +1,7 @@
 <template>
   <el-breadcrumb separator-class="el-icon-arrow-right" class="mb-2">
-    <el-breadcrumb-item :to="{ name: 'users' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+    <el-breadcrumb-item style="font-weight: 500;">{{$route.matched[1].name}}</el-breadcrumb-item>
+    <el-breadcrumb-item>{{$route.name}}</el-breadcrumb-item>
   </el-breadcrumb>
 </template>
 
@@ -16,6 +16,9 @@
     },
     methods: {
 
+    },
+    mounted () {
+      console.log('------', this.$route)
     }
   }
 </script>

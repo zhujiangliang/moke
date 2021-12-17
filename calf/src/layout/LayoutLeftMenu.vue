@@ -13,11 +13,12 @@
     >
       <el-submenu v-for="menu in menus" :key="menu.name" :index="menu.name">
         <template slot="title">
-          <span>{{menu.name}}</span>
+          <i class="el-icon-menu"></i>
+          <span class="menu-container-title">{{menu.meta.key}}</span>
         </template>
         <el-menu-item v-for="submenu in menu.children" :key="submenu.name" :index="submenu.path">
           <template slot="title">
-            <span>{{submenu.name}}</span>
+            <span class="menu-container-subtitle">{{submenu.name}}</span>
           </template>
         </el-menu-item>
       </el-submenu>
@@ -64,6 +65,13 @@
     position: relative;
     &-version {
       color: white;
+    }
+    &-title {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    &-subtitle {
+      font-size: 16px;
     }
     .el-submenu {
       width: 160px;

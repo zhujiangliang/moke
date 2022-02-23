@@ -10,7 +10,10 @@ const store = new Vuex.Store({
     name: 'name-store',
     user: 'user-store',
     age: '25',
-    count: 0
+    count: 0,
+    userInfo: {
+      permissionList: ['test']
+    }
   },
   getters: {
     userName: (state) => state.name + state.user,

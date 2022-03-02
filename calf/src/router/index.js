@@ -9,12 +9,6 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   console.log('to', to)
-//   console.log('from', from)
-//   console.log('next', next)
-// })
-
 // 跳当前路由报错处理
 const originalPush = VueRouter.prototype.push
 

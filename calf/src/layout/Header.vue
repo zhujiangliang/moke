@@ -1,12 +1,12 @@
 <template>
   <div>
-    <router-view></router-view>
+    <div class="border-bottom ml-3">welcome!</div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "Tuesday"
+
   }
 </script>
 

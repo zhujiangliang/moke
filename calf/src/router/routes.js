@@ -3,16 +3,20 @@ import pagesRoutes from './pages-routes'
 const Error404 = () => import('../views/error/404.vue')
 const Login = () => import('../views/login/Login.vue')
 const Layout = () => import('../layout/Layout')
+const Header = () => import('../layout/Header')
 
 export default [
   {
     path: '/',
-    redirect: 'login'
+    redirect: '/login'
   },
   {
     name: 'layout',
     path: '/layout',
-    component: Layout,
+    components: {
+      default: Layout,
+      header: Header
+    },
     children: [...pagesRoutes]
   },
   {
@@ -22,6 +26,7 @@ export default [
   },
   {
     path: '/login',
+    alias: '/copyLogin',
     name: 'login',
     component: Login
   },

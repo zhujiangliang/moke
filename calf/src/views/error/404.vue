@@ -2,9 +2,9 @@
   <div class="" style="height: 100%;">
     error 404!
     page not found,please check router!
-    <div>
+    <!-- <div>
       <svg-icon icon-class="404" class-name="404" style="width: 100px; height: 100px;"/>11
-    </div>
+    </div> -->
   </div>
 </template>
 

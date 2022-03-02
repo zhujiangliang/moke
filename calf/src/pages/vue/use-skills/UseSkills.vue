@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>thursday-plane</h1>
+    使用技巧
   </div>
 </template>
 
 <script>
   export default {
-    name: 'thursdayPlane'
+    name: "UseSkills"
   }
 </script>
 

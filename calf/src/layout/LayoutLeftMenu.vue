@@ -54,7 +54,7 @@
     },
     created () {
       this.menus = menus
-      console.log('menus', menus)
+      // console.log('menus', menus)
     }
   }
 </script>

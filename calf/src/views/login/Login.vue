@@ -76,9 +76,6 @@
       handleLogin () {
         this.$router.push('/vue/useSkills')
       }
-    },
-    created () {
-      console.log("created")
     }
   }
 </script>

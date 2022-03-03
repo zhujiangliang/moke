@@ -1,0 +1,8 @@
+{
+  "test": "测试",
+  "vue": {
+    "delete": "删除",
+    "self": "self in",
+    "only": "only"
+  }
+}

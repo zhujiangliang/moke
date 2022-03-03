@@ -74,7 +74,7 @@
       },
 
       handleLogin () {
-        this.$router.push('/monday')
+        this.$router.push('/vue/useSkills')
       }
     },
     created () {

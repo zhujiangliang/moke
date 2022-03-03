@@ -3,7 +3,6 @@ import pagesRoutes from './pages-routes'
 const Error404 = () => import('../views/error/404.vue')
 const Login = () => import('../views/login/Login.vue')
 const Layout = () => import('../layout/Layout')
-const Header = () => import('../layout/Header')
 
 export default [
   {
@@ -13,10 +12,7 @@ export default [
   {
     name: 'layout',
     path: '/layout',
-    components: {
-      default: Layout,
-      header: Header
-    },
+    component: Layout,
     children: [...pagesRoutes]
   },
   {

@@ -1,5 +1,5 @@
 {
-  "test": "测试",
+  "version": "版本",
   "vue": {
     "delete": "删除",
     "self": "self in",

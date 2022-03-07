@@ -1,6 +1,5 @@
 <template>
   <div class="login d-flex align-items-center">
-    <el-button @click="$router.push('/aaa')">11</el-button>
     <div class="login-form">
       <el-form :model="loginForm" ref="loginRef" :rules="rules" label-width="70px">
         <el-form-item label="用户名" prop="username">
@@ -19,8 +18,10 @@
 </template>
 
 <script>
+  import validateLogin from './validate-login'
   import { createNamespacedHelpers } from 'vuex'
   const { mapState } = createNamespacedHelpers('moduleA')
+
 
   export default {
     name: 'Login',
@@ -59,7 +60,6 @@
     },
     computed: {
       ...mapState(['name']),
-
     },
     methods: {
       login () {
@@ -74,16 +74,23 @@
       },
 
       handleLogin () {
-        this.$router.push('/vue/useSkills')
+        if (validateLogin()) {
+          this.$router.push('/vue/useSkills')
+        }
       }
-    }
+    },
+    // beforeRouteLeave (to, from, next) {
+    //   const answer = window.confirm('beforeRouteLeave confirm!')
+    //   if (answer) next()
+    //   else next(false)
+    // }
   }
 </script>
 
 <style lang="scss" scoped>
   .login {
     height: 100%;
-    // background: url("../../assets/images/zcloud-login-bg.png");
+    background: url("../../assets/images/zcloud-login-bg.png");
     &-form {
       margin-left: 60%;
       border: 1px solid white;

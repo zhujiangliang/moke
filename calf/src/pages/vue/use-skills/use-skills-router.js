@@ -3,7 +3,8 @@ const router = {
   path: '/vue/useSkills',
   component: () => import('./UseSkills.vue'),
   meta: {
-    key: 'UseSkills'
+    // key: 'UseSkills'
+    isName: true
   }
 }
 

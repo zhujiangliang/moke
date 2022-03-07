@@ -1,12 +1,29 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routes from './routes'
+import { checkLogin } from './methods/check-login'
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
   mode: 'history',
   routes
+})
+
+// 检查是否登录
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((p) => p.meta.needCheckLogin)) {
+    console.log('checkLogin()', checkLogin())
+    if (checkLogin()) {
+      next()
+    } else {
+      next({
+        name: 'login'
+      })
+    }
+  } else {
+    next()
+  }
 })
 
 // 跳当前路由报错处理

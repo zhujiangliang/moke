@@ -27,9 +27,6 @@
         localStorage.setItem('language', val)
         this.$i18n.locale = val
       }
-    },
-    created () {
-      console.log('-----', this.$i18n)
     }
   }
 </script>

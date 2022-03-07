@@ -13,6 +13,9 @@ export default [
     name: 'layout',
     path: '/layout',
     component: Layout,
+    meta: {
+      needCheckLogin: true
+    },
     children: [...pagesRoutes]
   },
   {

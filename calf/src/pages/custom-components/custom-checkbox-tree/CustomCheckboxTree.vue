@@ -5,7 +5,7 @@
       <div class="content-left border-right">
         <div class="d-flex justify-content-between pb-3 border-bottom">
           <div>菜单</div>
-          <el-checkbox v-model="checkedAll" :indeterminate="allFunctionIdMsg.indeterminate" class="mr-2" @change="handleCheckedAllChange">
+          <el-checkbox v-model="selectAllChecked" :indeterminate="allFunctionIdMsg.indeterminate" class="mr-2" @change="handleCheckedAllChange">
             全选
           </el-checkbox>
         </div>
@@ -129,7 +129,7 @@
     data () {
       return {
         collapseOpenList: [],
-        checkedAll: false,
+        selectAllChecked: false,
         rightType: 'hasTab',
         allFunctionIds: [],
         checkedIndex1: 0,
@@ -182,7 +182,6 @@
 
             getAllFunctionId(item.children)
             const checkedAll = allChildrenFunctionIds.every(id => checkedFunctionIds.includes(id))
-            console.log('checkedAll', checkedAll)
 
             if (checked && checkedAll) {
               item.checked = true
@@ -272,6 +271,10 @@
         }
 
         loop(this.allFunctionIds)
+
+        // 第三步：处理全选按钮selectAllChecked状态
+        if (this.allFunctionIdMsg.allCheckedFunctionId.length) this.selectAllChecked = true
+        else this.selectAllChecked = false
       },
 
       // 处理选中的展开

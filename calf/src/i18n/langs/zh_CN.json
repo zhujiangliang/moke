@@ -1,5 +1,7 @@
 {
   "version": "版本",
+  "selectedTerm": "已选 {0} 项",
+  "selectAll": "全选",
   "vue": {
     "delete": "删除",
     "self": "self in",

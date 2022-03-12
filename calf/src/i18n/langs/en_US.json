@@ -1,5 +1,7 @@
 {
   "version": "Version",
+  "selectedTerm": "Selected {0} item",
+  "selectAll": "Select All",
   "vue": {
     "delete": "Delete",
     "self": "self in",

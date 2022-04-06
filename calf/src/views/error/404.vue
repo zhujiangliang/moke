@@ -15,7 +15,7 @@
 </script>
 <style scoped>
   .error {
-    background: url("~@/assets/images/zcloud-login-bg.png");
+    background: url("~@/assets/images/login-bg.png");
   }
 </style>
 

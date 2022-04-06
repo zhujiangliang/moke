@@ -77,8 +77,23 @@
         if (validateLogin()) {
           this.$router.push('/vue/useSkills')
         }
+      },
+
+      getMsg () {
+        // this.$http.get('/dbaasInfrastructure/knowledgeBase/detail', {
+        //   params: {
+        //     category: 'oracle',
+        //     subCategory: 'error-code',
+        //     name: '1111111'
+        //   }
+        // }).then(res => {
+        //   console.log(res)
+        // })
       }
     },
+    created () {
+      // this.testMsg()
+    }
     // beforeRouteLeave (to, from, next) {
     //   const answer = window.confirm('beforeRouteLeave confirm!')
     //   if (answer) next()
@@ -90,7 +105,7 @@
 <style lang="scss" scoped>
   .login {
     height: 100%;
-    background: url("../../assets/images/zcloud-login-bg.png");
+    background: url("../../assets/images/login-bg.jpg");
     &-form {
       margin-left: 60%;
       border: 1px solid white;
